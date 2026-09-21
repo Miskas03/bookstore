@@ -3,13 +3,16 @@ package bookstoremiska;
 import bookstoremiska.web.BookController;
 import java.beans.BeanProperty;
 
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import bookstoremiska.domain.BookRepository;
+import bookstoremiska.domain.CategoryRepository;
 import bookstoremiska.domain.Book;
+import bookstoremiska.domain.Category;
 
 @SpringBootApplication
 public class BookstoremiskaApplication {
@@ -26,10 +29,19 @@ public class BookstoremiskaApplication {
 	}
 
 	@Bean
-	CommandLineRunner initDatabase(BookRepository bookRepository) {
+	CommandLineRunner initDatabase(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return args -> {
-			bookRepository.save(new Book("Juha Mieto", "0001", "Matematiikan kirja", 2007));
-			bookRepository.save(new Book("Jouni Karjala", "0002", "Ohjelmistokehityksen perusteet", 2016));
+			Category fiction = new Category();
+			fiction.setName("Fiction");
+			categoryRepository.save(fiction);
+
+			Category NonFiction = new Category();
+			NonFiction.setName("Non Fiction");
+			categoryRepository.save(NonFiction);
+
+
+			bookRepository.save(new Book("Juha Mieto", "0001", "Matematiikan kirja", 2007, NonFiction));
+			bookRepository.save(new Book("Jouni Karjala", "0002", "Ohjelmistokehityksen perusteet", 2016, fiction));
 		};
 	}
 

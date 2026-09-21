@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import bookstoremiska.domain.Category;
 
 
 @Entity 
@@ -17,16 +19,30 @@ public class Book {
     private String title;
     private int publicationYear;
 
+@ManyToOne
+private Category category;
+
 
     public Book(){       
     }
 
 
-    public Book(String author, String isbn, String title, int publicationYear) {
+    public Book(String author, String isbn, String title, int publicationYear, Category category) {
         this.author = author;
         this.isbn = isbn;
         this.title = title;
         this.publicationYear = publicationYear;
+        this.category = category;
+    }
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 

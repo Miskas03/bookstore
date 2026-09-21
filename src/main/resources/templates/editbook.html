@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Edit Book</title>
+</head>
+<body>
+    <h1>Edit Book</h1>
+    <form th:action="@{/edit/{id}(id=${book.id})}" th:object="${book}" method="post">
+         <input type="hidden" th:field="*{id}" />
+         <tr>
+        <label>Author: <input type="text" th:field="*{author}"></label>
+        <label>ISBN: <input type="text" th:field="*{isbn}"></label>
+        <label>Title: <input type="text" th:field="*{title}"></label>
+        <label>Year: <input type="number" th:field="*{publicationYear}"></label>
+        <button type="submit">Save</button>
+        </tr>
+    </form>
+</body>
+</html>
