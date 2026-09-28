@@ -96,28 +96,6 @@ public class BookController {
         
         return "redirect:/booklist";
     }
-
-
-    // RESTful service to get all books
-    @RequestMapping(value="/allBooks", method=RequestMethod.GET)
-    public @ResponseBody List<Book> bookListRest() {
-        return (List<Book>) bookRepository.findAll();
-    }
-
-
-    // RESTful service to get book by id
-    @RequestMapping(value="/allBooks/{id}", method=RequestMethod.GET)
-    public @ResponseBody Optional<Book> findBook(@PathVariable ("id") Long bookId) {
-        return bookRepository.findById(bookId);
-    }
-    
-    
-
-    
-    
-    
-    
-    
     
 
 }
