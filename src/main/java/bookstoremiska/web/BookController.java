@@ -1,9 +1,5 @@
 package bookstoremiska.web;
 
-import java.lang.classfile.ClassFile.Option;
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +15,7 @@ import bookstoremiska.domain.CategoryRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -40,6 +34,13 @@ public class BookController {
         this.bookRepository = bookRepository;
         this.categoryRepository = categoryRepository;
     }
+
+
+    @GetMapping("/login")
+    public String loginPage(Model model) {
+        return "login";
+    }
+    
 
     // Show all books
     @GetMapping("/booklist")

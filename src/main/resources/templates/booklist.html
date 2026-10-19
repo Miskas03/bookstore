@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    
     <head>
         <title>Booklist</title>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
         <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+
+
+        <h6 sec:authorize="hasRole('ADMIN')">Signed in as <span sec:authentication="name"></span></h6>
+        <h5 sec:authorize="hasRole('USER')">Welcome <span sec:authentication="name"></span>!</h5>
+
+
     </head>
     <body>
         <h1>Books</h1>
@@ -16,6 +24,14 @@
                 <th>Year</th>
                 <th>Category</th>
                 </tr>
+                
+                <form sec:authorize="!isAuthenticated()" th:action="@{/login}" method="get">
+                    <input type = "submit" value = "Sign In"/>
+                </form>
+                
+                 <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method = "post">
+                    <input type = "submit" value="Sign Out"/>
+                </form>
             </thead>
             <tbody>
                 <tr th:each = "book : ${books}">
@@ -24,14 +40,15 @@
                     <td th:text="${book.isbn}"></td>
                     <td th:text="${book.publicationYear}"></td>
                     <td th:text ="${book.category.name}"></td>
-                    <td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
-                    <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+                    <td><a sec:authorize="hasRole('ADMIN')" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+                    <td><a sec:authorize="isAuthenticated()" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
                 </tr>
                 
             </tbody>
     
         </table>
-        <a href="/add" class="btn btn-primary">Add book</a>
+        <a sec:authorize="isAuthenticated()" href="/add" class="btn btn-primary">Add book</a>
+        
         
     </body>
 

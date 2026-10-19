@@ -29,63 +29,91 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+	
 	<dependencies>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
+	<!-- Actuator: valmiit endpointit sovelluksen tilan seurantaan (esim. /actuator/health) -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
 
 
-		<!-- TIETOKANTA DEPENDENCYT ALKAA -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+	<!-- TIETOKANTA DEPENDENCYT ALKAA -->
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
+	<!-- Spring Data JPA: tietokannan käsittely Java-olioina (entityt, repositoryt, Hibernate) -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
+	<!-- Spring Data REST: julkaisee repositoryt automaattisesti REST-rajapintana -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-rest</artifactId>
+	</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-h2console</artifactId>
-		</dependency>
+	<!-- H2: muistinvarainen tietokanta kehitykseen ja testaukseen -->
+	<dependency>
+		<groupId>com.h2database</groupId>
+		<artifactId>h2</artifactId>
+	</dependency>
 
-		<!-- TIETOKANTA DEPENDENCYT LOPPUU -->
+	<!-- H2 console: selainpohjainen käyttöliittymä H2-tietokannan katseluun (/h2-console) -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-h2console</artifactId>
+	</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webmvc</artifactId>
-		</dependency>
+	<!-- TIETOKANTA DEPENDENCYT LOPPUU -->
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webmvc-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+	<!-- Spring Security: kirjautuminen, käyttäjien autentikointi ja pääsynhallinta -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-security</artifactId>
+		
+	</dependency>
+
+	<dependency>
+    	<groupId>org.thymeleaf.extras</groupId>
+    	<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+	</dependency>
+
+	<!-- Thymeleaf: HTML-sivupohjat, joihin voi tuoda dataa Java-koodista -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-thymeleaf</artifactId>
+	</dependency>
+
+	<!-- Web MVC: web-sovelluksen perusta (controllerit, reitit, sisäänrakennettu Tomcat) -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-webmvc</artifactId>
+	</dependency>
+
+	<!-- DevTools: automaattinen uudelleenkäynnistys koodimuutosten jälkeen, vain kehityskäyttöön -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-devtools</artifactId>
+		<scope>runtime</scope>
+		<optional>true</optional>
+	</dependency>
+
+	<!-- Thymeleaf-testit: työkalut Thymeleaf-näkymien testaamiseen -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-thymeleaf-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+
+	<!-- Web MVC -testit: työkalut controllerien testaamiseen (esim. MockMvc) -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-webmvc-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+</dependencies>
+
 
 	<build>
 		<plugins>
