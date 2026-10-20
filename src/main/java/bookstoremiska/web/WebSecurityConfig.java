@@ -18,6 +18,7 @@ public class WebSecurityConfig  {
 		http
 			.authorizeHttpRequests( authorize -> authorize        // / and /home paths are configured to not
 				.requestMatchers("/booklist", "/css/**").permitAll()    // require any authentication.
+				.requestMatchers("/delete/**").hasRole("ADMIN")
 				.anyRequest().authenticated()                 // All other paths must be authenticated.
 			)                                             // If you don't give loginPage
 		.formLogin( formlogin -> formlogin                    // your application will use the
